@@ -1,5 +1,12 @@
 Change log
 
+## [1.0.2](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.1...v1.0.2) (2021-09-23)
+
+
+### Bug Fixes
+
+* linting and line ending issues ([407c5df](https://github.com/zp-bots-telegram/rotmg-bot/commit/407c5df5102099014349bc6744c220207878510b))
+
 ## [1.0.1](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.0...v1.0.1) (2021-09-23)
 
 
