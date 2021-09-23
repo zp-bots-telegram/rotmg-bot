@@ -1,9 +1,9 @@
 {
-  "name": "typescript-project-template",
+  "name": "rotmg-bot",
   "version": "1.2.9",
   "repository": {
     "type": "git",
-    "url": "https:git@github.com:zp-templates/typescript-project-template.git"
+    "url": "https:git@github.com:zp-bots-telegram/rotmg-bot.git"
   },
   "description": "",
   "main": "src/handler.ts",
