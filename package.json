@@ -6,13 +6,13 @@
     "url": "https:git@github.com:zp-templates/typescript-project-template.git"
   },
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/handler.ts",
   "scripts": {
     "build": "rimraf ./build && tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix",
     "prettier:format": "prettier --config .prettierrc \"src/**/*.ts\" --write",
-    "start": "node build/index.js",
+    "start": "node build/handler.js",
     "start:dev": "nodemon",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,13 @@
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.2.1",
-    "@types/node": "^15.0.1",
+    "@types/cheerio": "^0.22.30",
+    "@types/dotenv": "^8.2.0",
+    "@types/node": "^16.9.6",
+    "@types/node-telegram-bot-api": "^0.51.4",
+    "@types/request": "^2.48.7",
+    "@types/request-promise": "^4.1.48",
+    "@types/xml2js": "^0.4.9",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "eslint": "^7.25.0",
@@ -36,5 +42,14 @@
     "semantic-release": "^17.4.2",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^10.0.0",
+    "node-telegram-bot-api": "^0.54.0",
+    "request": "^2.88.2",
+    "request-promise": "^4.2.6",
+    "toad-scheduler": "^1.5.0",
+    "xml2js": "^0.4.23"
   }
 }
