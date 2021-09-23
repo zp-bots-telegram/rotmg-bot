@@ -1,5 +1,19 @@
 Change log
 
+# 1.0.0 (2021-09-23)
+
+
+### Bug Fixes
+
+* copy package.json into the docker image ([deed2aa](https://github.com/zp-bots-telegram/rotmg-bot/commit/deed2aaccb5814fff1f65144f7c2420e3c3d1410))
+* wrong urls for rotmg-bot repo ([e0b915e](https://github.com/zp-bots-telegram/rotmg-bot/commit/e0b915e2b41ccd0e24d3b0f31b428b62e38cf049))
+
+
+### Features
+
+* add chars command and restructure typescript setup ([afb6892](https://github.com/zp-bots-telegram/rotmg-bot/commit/afb68923534427430bca8d875a328fec2662d92e))
+* add login command and test scheduled job ([dffd164](https://github.com/zp-bots-telegram/rotmg-bot/commit/dffd164f30d6059e98a1afd23a5738efd8b77649))
+
 ## [1.2.9](https://github.com/zp-templates/typescript-project-template/compare/v1.2.8...v1.2.9) (2021-05-05)
 
 
