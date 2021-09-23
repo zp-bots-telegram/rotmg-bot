@@ -1,5 +1,12 @@
 Change log
 
+## [1.0.1](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.0...v1.0.1) (2021-09-23)
+
+
+### Bug Fixes
+
+* load bot token correctly from environment ([b61d76b](https://github.com/zp-bots-telegram/rotmg-bot/commit/b61d76bbe1e9f9d423bd0855ce2aa71ee6bc4a40))
+
 # 1.0.0 (2021-09-23)
 
 
