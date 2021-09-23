@@ -1,6 +1,6 @@
 ## Project Gitignore
 build/
-logins.json
+data.json
 
 
 ## Node Gitignore
