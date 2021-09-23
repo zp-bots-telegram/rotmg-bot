@@ -1,10 +1,15 @@
+/* eslint-disable babel/camelcase */
 import dotenv from 'dotenv';
-import { SimpleIntervalJob, Task, ToadScheduler } from 'toad-scheduler';
+import { AsyncTask, SimpleIntervalJob, ToadScheduler } from 'toad-scheduler';
 
 import TelegramBot from 'node-telegram-bot-api';
+import rp from 'request-promise';
 
 import { loginCommand } from './commands/login';
 import { charsCommand } from './commands/chars';
+import { toggleAutoLoginCommand } from './commands/toggleautologin';
+import { getUsers } from './storage/users';
+import { getCharList, login } from './requests/realm';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -16,27 +21,52 @@ export async function handler() {
   const bot = new TelegramBot(process.env.BOT_TOKEN, { polling: true });
 
   registerCommands(bot);
-  scheduleAutoLogin();
+  scheduleAutoLogin(bot);
 }
 
 function registerCommands(bot: TelegramBot) {
   loginCommand(bot);
   charsCommand(bot);
+  toggleAutoLoginCommand(bot);
 }
 
-function scheduleAutoLogin() {
+function scheduleAutoLogin(bot: TelegramBot) {
   const scheduler = new ToadScheduler();
-  const task = new Task(
+  const task = new AsyncTask(
     'auto-login',
-    () => {
-      console.log('task ran');
+    async () => {
+      const users = await getUsers();
+      for (const key in users) {
+        if (Object.hasOwnProperty.call(users, key)) {
+          const user = users[key];
+          if (user.logins[0].autoLogin) {
+            const request = rp.defaults({
+              jar: true,
+              followAllRedirects: true
+            });
+            const accessToken = await login(request, {
+              username: user.logins[0].username,
+              password: user.logins[0].password
+            });
+            const chars = await getCharList(request, {
+              accessToken
+            });
+            await bot.sendMessage(
+              key,
+              `Auto-Login done for ${chars.Chars.Account[0].Name}`,
+              { parse_mode: 'HTML' }
+            );
+            await new Promise((resolve) => setTimeout(resolve, 5000));
+          }
+        }
+      }
     },
     (err: Error) => {
       console.error(err);
     }
   );
 
-  const job = new SimpleIntervalJob({ seconds: 5 }, task);
+  const job = new SimpleIntervalJob({ hours: 1, runImmediately: true }, task);
 
   scheduler.addSimpleIntervalJob(job);
 }

@@ -4,21 +4,17 @@ import { constants, promises } from 'fs';
 const fs = promises;
 const fsConstants = constants;
 
-interface Login {
+export interface Login {
   username: string;
   password: string;
   autoLogin: boolean;
 }
 
-interface User {
+export interface User {
   logins: Login[];
 }
 
-interface Users {
-  [id: number]: User;
-}
-
-let userCache: Users | null = null;
+let userCache: Record<number, User> | null = null;
 
 async function save(): Promise<Boolean> {
   if (userCache) {
@@ -40,26 +36,26 @@ process.on('SIGTERM', async () => {
   }
 });
 
-async function load(): Promise<Users> {
+async function load(): Promise<Record<number, User>> {
   try {
     await fs.access('data.json', fsConstants.W_OK);
     const file = await fs.readFile('data.json');
     console.log('JSON file has been loaded.');
-    return JSON.parse(file.toString()) as Users;
+    return JSON.parse(file.toString()) as Record<number, User>;
   } catch (error) {
     console.error('Loading file threw error', error);
     return {};
   }
 }
 
-async function getUsers(): Promise<Users> {
+export async function getUsers(): Promise<Record<number, User>> {
   if (!userCache) {
     userCache = await load();
   }
   return userCache;
 }
 
-async function setUsers(users: Users): Promise<void> {
+async function setUsers(users: Record<number, User>): Promise<void> {
   userCache = users;
   await save();
 }
@@ -81,8 +77,14 @@ export async function setLogin(
   password: string
 ): Promise<Login> {
   const user = await getUser(userId);
-  console.log(user);
   user.logins[0] = { username, password, autoLogin: false };
+  await setUser(userId, user);
+  return user.logins[0];
+}
+
+export async function toggleAutoLogin(userId: number): Promise<Login> {
+  const user = await getUser(userId);
+  user.logins[0] = { ...user.logins[0], autoLogin: !user.logins[0].autoLogin };
   await setUser(userId, user);
   return user.logins[0];
 }
