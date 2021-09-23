@@ -1,9 +1,10 @@
-/* eslint-disable no-console */
-import TelegramBot from 'node-telegram-bot-api';
 import dotenv from 'dotenv';
+import { SimpleIntervalJob, Task, ToadScheduler } from 'toad-scheduler';
+
+import TelegramBot from 'node-telegram-bot-api';
 
 import { loginCommand } from './commands/login';
-import { AsyncTask, SimpleIntervalJob, ToadScheduler } from "toad-scheduler";
+import { charsCommand } from './commands/chars';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -15,22 +16,29 @@ export async function handler() {
   const bot = new TelegramBot(env.BOT_TOKEN, { polling: true });
 
   registerCommands(bot);
-  scheduleAutoLogin()
+  scheduleAutoLogin();
 }
 
 function registerCommands(bot: TelegramBot) {
   loginCommand(bot);
+  charsCommand(bot);
 }
 
 function scheduleAutoLogin() {
-  const scheduler = new ToadScheduler()
-  const task = new AsyncTask('auto-login', async () => {
-    console.log("task ran")
-  }, (err: Error) => {})
+  const scheduler = new ToadScheduler();
+  const task = new Task(
+    'auto-login',
+    () => {
+      console.log('task ran');
+    },
+    (err: Error) => {
+      console.error(err);
+    }
+  );
 
-  const job = new SimpleIntervalJob({seconds: 5}, task)
+  const job = new SimpleIntervalJob({ seconds: 5 }, task);
 
-  scheduler.addSimpleIntervalJob(job)
+  scheduler.addSimpleIntervalJob(job);
 }
 
 handler()
