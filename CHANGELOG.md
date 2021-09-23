@@ -1,5 +1,12 @@
 Change log
 
+# [1.1.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.2...v1.1.0) (2021-09-23)
+
+
+### Features
+
+* auto-login ([c389719](https://github.com/zp-bots-telegram/rotmg-bot/commit/c3897199eb1470ec2549966fd553ea368d85a1c2))
+
 ## [1.0.2](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.1...v1.0.2) (2021-09-23)
 
 
