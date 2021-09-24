@@ -72,8 +72,6 @@ export async function getLoginCalendar(
     }
   };
   const xml = await request('/dailyLogin/fetchCalendar', options);
-  console.log(xml);
   const parsed: LoginCalendarResponse = await parseStringPromise(xml);
-  console.log(JSON.stringify(parsed));
   return parsed;
 }
