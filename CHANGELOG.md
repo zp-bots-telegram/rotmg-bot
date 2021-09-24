@@ -1,5 +1,12 @@
 Change log
 
+# [1.2.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.1.0...v1.2.0) (2021-09-24)
+
+
+### Features
+
+* login calendar command ([7f5b331](https://github.com/zp-bots-telegram/rotmg-bot/commit/7f5b331d09c5fbaa2c7c32858e0c3792f675b6ea))
+
 # [1.1.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.0.2...v1.1.0) (2021-09-23)
 
 
