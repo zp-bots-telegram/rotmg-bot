@@ -63,7 +63,7 @@ async function setUsers(users: Record<number, User>): Promise<void> {
 
 export async function getUser(userId: number): Promise<User> {
   const users = await getUsers();
-  return users[userId] ?? { logins: [] };
+  return users[userId] ?? { logins: [], autoLoginHour: 5 };
 }
 
 export async function setUser(userId: number, user: User): Promise<void> {
