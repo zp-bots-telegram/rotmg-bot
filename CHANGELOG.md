@@ -1,5 +1,12 @@
 Change log
 
+# [1.3.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.2.0...v1.3.0) (2021-09-24)
+
+
+### Features
+
+* allow users to set which hour their auto logins happen in ([3f026fd](https://github.com/zp-bots-telegram/rotmg-bot/commit/3f026fd89c3815b9b43d84e03f5bae0fc7671c86))
+
 # [1.2.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.1.0...v1.2.0) (2021-09-24)
 
 
