@@ -10,6 +10,7 @@ import { toggleAutoLoginCommand } from './commands/toggleautologin';
 import { getUsers } from './storage/users';
 import { getCharList, login } from './requests/realm';
 import { loginCalendar } from './commands/loginCalendar';
+import { setAutoLoginHourCommand } from './commands/setAutoLoginHour';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -29,6 +30,7 @@ function registerCommands(bot: TelegramBot) {
   charsCommand(bot);
   toggleAutoLoginCommand(bot);
   loginCalendar(bot);
+  setAutoLoginHourCommand(bot);
 }
 
 function scheduleAutoLogin(bot: TelegramBot) {
@@ -37,10 +39,11 @@ function scheduleAutoLogin(bot: TelegramBot) {
     'auto-login',
     async () => {
       const users = await getUsers();
+      const currentHour = new Date().getUTCHours();
       for (const key in users) {
         if (Object.hasOwnProperty.call(users, key)) {
           const user = users[key];
-          if (user.logins[0].autoLogin) {
+          if (user.logins[0].autoLogin && user.autoLoginHour === currentHour) {
             const request = rp.defaults({
               jar: true,
               followAllRedirects: true
@@ -67,7 +70,10 @@ function scheduleAutoLogin(bot: TelegramBot) {
     }
   );
 
-  const job = new SimpleIntervalJob({ hours: 1, runImmediately: true }, task);
+  const job = new SimpleIntervalJob(
+    { minutes: 29, runImmediately: true },
+    task
+  );
 
   scheduler.addSimpleIntervalJob(job);
 }
