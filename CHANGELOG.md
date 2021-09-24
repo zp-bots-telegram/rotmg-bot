@@ -1,5 +1,12 @@
 Change log
 
+## [1.3.1](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.3.0...v1.3.1) (2021-09-24)
+
+
+### Bug Fixes
+
+* set default auto login hour ([538eb39](https://github.com/zp-bots-telegram/rotmg-bot/commit/538eb39e6790dcb18ce8b1e8ef4c87f106bc94fa))
+
 # [1.3.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.2.0...v1.3.0) (2021-09-24)
 
 
