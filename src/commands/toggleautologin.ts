@@ -1,5 +1,3 @@
-/* eslint-disable babel/camelcase */
-
 import TelegramBot, { Message } from 'node-telegram-bot-api';
 
 import { toggleAutoLogin } from '../storage/users';

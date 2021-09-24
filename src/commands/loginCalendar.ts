@@ -2,10 +2,10 @@ import TelegramBot, { Message } from 'node-telegram-bot-api';
 import rp from 'request-promise';
 
 import { getUser } from '../storage/users';
-import { getCharList, login } from '../requests/realm';
+import { getLoginCalendar, login } from '../requests/realm';
 
-export function charsCommand(telegramBot: TelegramBot) {
-  telegramBot.onText(/\/chars/, async (msg: Message) => {
+export function loginCalendar(telegramBot: TelegramBot) {
+  telegramBot.onText(/\/logincalendar/, async (msg: Message) => {
     const chatId = msg.chat.id;
     if (!msg.from) {
       return;
@@ -26,9 +26,10 @@ export function charsCommand(telegramBot: TelegramBot) {
       password: userLogin.password
     });
 
-    const charList = await getCharList(request, { accessToken });
+    const charList = await getLoginCalendar(request, { accessToken });
 
-    const message = `<b>Name</b>: ${charList.Chars.Account[0].Name[0]}`;
+    let message = `<b>Consecutive Days</b>: ${charList.LoginRewards.$.conCurDay}\n`;
+    message += `<b>Total Days</b>: ${charList.LoginRewards.$.nonconCurDay}\n`;
 
     await telegramBot.sendMessage(chatId, message, { parse_mode: 'HTML' });
   });

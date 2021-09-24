@@ -1,4 +1,3 @@
-/* eslint-disable babel/camelcase */
 import dotenv from 'dotenv';
 import { AsyncTask, SimpleIntervalJob, ToadScheduler } from 'toad-scheduler';
 
@@ -10,6 +9,7 @@ import { charsCommand } from './commands/chars';
 import { toggleAutoLoginCommand } from './commands/toggleautologin';
 import { getUsers } from './storage/users';
 import { getCharList, login } from './requests/realm';
+import { loginCalendar } from './commands/loginCalendar';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -28,6 +28,7 @@ function registerCommands(bot: TelegramBot) {
   loginCommand(bot);
   charsCommand(bot);
   toggleAutoLoginCommand(bot);
+  loginCalendar(bot);
 }
 
 function scheduleAutoLogin(bot: TelegramBot) {

@@ -4,6 +4,7 @@ import { parseStringPromise } from 'xml2js';
 
 import { LoginResponse } from '../types/login';
 import { CharListResponse } from '../types/chars';
+import { LoginCalendarResponse } from '../types/loginCalendar';
 
 export async function login(
   request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
@@ -30,6 +31,7 @@ export async function login(
   };
   const xml = await request('/account/verify', options);
   const parsed: LoginResponse = await parseStringPromise(xml);
+
   return parsed?.Account?.AccessToken[0];
 }
 
@@ -51,5 +53,27 @@ export async function getCharList(
   };
   const xml = await request('/char/list', options);
   const parsed: CharListResponse = await parseStringPromise(xml);
+  return parsed;
+}
+
+export async function getLoginCalendar(
+  request: RequestAPI<RequestPromise, RequestPromiseOptions, RequiredUriUrl>,
+  args: {
+    accessToken: string;
+  }
+): Promise<LoginCalendarResponse> {
+  const options: RequestPromiseOptions = {
+    method: 'GET',
+    baseUrl: 'https://www.realmofthemadgod.com/',
+    qs: {
+      accessToken: args.accessToken,
+      game_net: 'Unity_steam',
+      play_platform: 'Unity_steam'
+    }
+  };
+  const xml = await request('/dailyLogin/fetchCalendar', options);
+  console.log(xml);
+  const parsed: LoginCalendarResponse = await parseStringPromise(xml);
+  console.log(JSON.stringify(parsed));
   return parsed;
 }
