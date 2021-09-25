@@ -30,7 +30,9 @@ export function setAutoLoginHourCommand(telegramBot: TelegramBot) {
 
       const message = `Auto-Login hour set to ${loginData.autoLoginHour}!`;
 
-      await telegramBot.sendMessage(chatId, message, { parse_mode: 'HTML' });
+      await telegramBot.sendMessage(chatId, message, {
+        parse_mode: 'HTML'
+      });
     }
   );
 }
