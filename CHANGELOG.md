@@ -1,5 +1,12 @@
 Change log
 
+# [1.4.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.3.1...v1.4.0) (2021-09-25)
+
+
+### Features
+
+* when tomorrow is a new month, send notification to claim goodies after doing auto-login ([4f5e4aa](https://github.com/zp-bots-telegram/rotmg-bot/commit/4f5e4aaa41d614745bc811729b4d1396abcfd1a9))
+
 ## [1.3.1](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.3.0...v1.3.1) (2021-09-24)
 
 
