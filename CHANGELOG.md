@@ -1,5 +1,13 @@
 Change log
 
+# [1.5.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.4.0...v1.5.0) (2022-01-10)
+
+
+### Features
+
+* add debug mode that user can toggle with /toggleDebug ([55ce84b](https://github.com/zp-bots-telegram/rotmg-bot/commit/55ce84b0676d7aa93a57396c1bb958f97dc0b257))
+* send messages to user on failure ([5290ba7](https://github.com/zp-bots-telegram/rotmg-bot/commit/5290ba75819fe08de6a35d3068bbb2020c1b0fb6))
+
 # [1.4.0](https://github.com/zp-bots-telegram/rotmg-bot/compare/v1.3.1...v1.4.0) (2021-09-25)
 
 
