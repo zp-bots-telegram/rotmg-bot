@@ -4,7 +4,7 @@ import TelegramBot from 'node-telegram-bot-api';
 
 import { loginCommand } from './commands/login';
 import { charsCommand } from './commands/chars';
-import { toggleAutoLoginCommand } from './commands/toggleautologin';
+import { toggleAutoLoginCommand } from './commands/toggleAutoLogin';
 import { loginCalendar } from './commands/loginCalendar';
 import { setAutoLoginHourCommand } from './commands/setAutoLoginHour';
 import { scheduleAutoLogin } from './scheduled/autoLogin';
