@@ -25,23 +25,37 @@ export function scheduleAutoLogin(bot: TelegramBot) {
               username: user.logins[0].username,
               password: user.logins[0].password
             });
+            if (!accessToken) {
+              await bot.sendMessage(
+                key,
+                `Auto-Login Failed, could not authenticate`,
+                {
+                  parse_mode: 'HTML'
+                }
+              );
+            }
             const chars = await getCharList(request, {
               accessToken
             });
+            if (!chars) {
+              await bot.sendMessage(
+                key,
+                `Auto-Login Failed, could not pull character data`,
+                {
+                  parse_mode: 'HTML'
+                }
+              );
+            }
 
             const date = new Date();
             const tomorrow = new Date(date);
             tomorrow.setDate(date.getDate() + 1);
             const tomorrowDay = tomorrow.getDate();
 
-            console.log(date);
-            console.log(tomorrow);
-            console.log(tomorrowDay);
-
             if (tomorrowDay === 1) {
               await bot.sendMessage(
                 key,
-                `Auto-Login done for ${chars.Chars.Account[0].Name}. Tomorrow is a new month, remember to claim your goodies today!`,
+                `Tomorrow is a new month, remember to claim your goodies today!`,
                 { parse_mode: 'HTML' }
               );
             } else {
