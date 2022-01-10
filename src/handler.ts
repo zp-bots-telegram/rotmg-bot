@@ -8,6 +8,7 @@ import { toggleAutoLoginCommand } from './commands/toggleAutoLogin';
 import { loginCalendar } from './commands/loginCalendar';
 import { setAutoLoginHourCommand } from './commands/setAutoLoginHour';
 import { scheduleAutoLogin } from './scheduled/autoLogin';
+import { toggleDebugCommand } from './commands/toggleDebug';
 
 // eslint-disable-next-line require-await
 export async function handler() {
@@ -28,6 +29,7 @@ function registerCommands(bot: TelegramBot) {
   toggleAutoLoginCommand(bot);
   loginCalendar(bot);
   setAutoLoginHourCommand(bot);
+  toggleDebugCommand(bot);
 }
 
 handler()

@@ -58,7 +58,7 @@ export function scheduleAutoLogin(bot: TelegramBot) {
                 `Tomorrow is a new month, remember to claim your goodies today!`,
                 { parse_mode: 'HTML' }
               );
-            } else {
+            } else if (user.debugMode) {
               await bot.sendMessage(
                 key,
                 `Auto-Login done for ${chars.Chars.Account[0].Name}`,

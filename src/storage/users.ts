@@ -13,6 +13,7 @@ export interface Login {
 export interface User {
   logins: Login[];
   autoLoginHour: number;
+  debugMode: boolean;
 }
 
 let userCache: Record<number, User> | null = null;
@@ -88,6 +89,13 @@ export async function toggleAutoLogin(userId: number): Promise<Login> {
   user.logins[0] = { ...user.logins[0], autoLogin: !user.logins[0].autoLogin };
   await setUser(userId, user);
   return user.logins[0];
+}
+
+export async function toggleDebug(userId: number): Promise<User> {
+  let user = await getUser(userId);
+  user = { ...user, debugMode: !user.debugMode };
+  await setUser(userId, user);
+  return user;
 }
 
 export async function setAutoLoginHour(
